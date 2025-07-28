@@ -1,7 +1,7 @@
 from django.db import models
 from Cadastro.models import Usuario
 
-# Create your models here.
+# Model da tabela operacao ligação com usuário pela foreign key IDUsuario
 class Operacao(models.Model):
     IDOperacao = models.AutoField(primary_key=True)
     IDUsuario = models.ForeignKey(Usuario, on_delete = models.CASCADE)
