@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="{% static 'calculadora/css/styles.css' %}">
+</head>
+<body>
+    <h1>Calculadora</h1>
+
+    <div class="container">
+        <div class="calculadora">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Calcular</button>
+            </form>
+
+            {% if resultado is not None %}
+                <p class="resultado">Resultado: {{ resultado }}</p>
+            {% endif %}
+        </div>
+
+        <div class="historico">
+            <h2>Histórico</h2>
+            <ul>
+                {% for op in historico %}
+                    <li>{{ op.numero1 }} {{ op.operacao }} {{ op.numero2 }} = {{ op.resultado }}</li>
+                {% empty %}
+                    <li>Nenhuma operação ainda.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

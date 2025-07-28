@@ -1,0 +1,35 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{%static 'cadastro/css/styles.css'%}">
+</head>
+<body>
+    <h1> Cadastro </h1>
+    <form action="{%url 'cadastro:cadastrar'%}" method="POST">
+        {% csrf_token %}
+        <div class = "form-content form-content-grid"> 
+            {%for field in form%}
+                <div class = "form-group">
+                    <label for="{{field.id_for_label}}"> {{field.label}} </label>
+                    {{field}}
+                </div>
+            {%endfor%}
+        </div>
+        <div class = "form-content form-content-grid"> 
+            <div class = "form-group">
+                <button type="submit"> Cadastrar </button>
+            </div>
+        </div>
+        
+            <div class = "form-content form-content-grid"> 
+                <div class = "form-group">
+                    <a href={%url 'cadastro:login'%}>Já tenho cadastro</a>
+                </div>
+            </div>
+        
+    </form>
+</body>
+</html>
